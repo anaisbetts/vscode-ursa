@@ -11,7 +11,7 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "*"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -33,7 +33,13 @@
         "typescript": "^2.6.1",
         "vscode": "^1.1.6",
         "tslint": "^5.8.0",
+        "@types/fs-extra": "^5.0.2",
         "@types/node": "^7.0.43",
         "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "fs-extra": "^6.0.0",
+        "ripgrep-js": "^1.1.0",
+        "rxjs": "^6.1.0"
     }
 }
