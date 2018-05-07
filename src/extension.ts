@@ -3,29 +3,6 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 
-enum NotesDirectoryType {
-  None = 0,
-  Local = 1,
-  Global = 2,
-}
-
-function findNotesDirectory(context: vscode.ExtensionContext) {
-  const toTry = [
-    { type: NotesDirectoryType.Local, state: context.workspaceState, },
-    { type: NotesDirectoryType.Global, state: context.globalState, }
-  ];
-
-  for (let { type, state } of toTry) {
-    let path = state.get<string>('notesRootPath');
-
-    if (path && fs.existsSync(path)) {
-      return { type, path };
-    }
-  }
-
-  return  { type: NotesDirectoryType.None, path: null };
-}
-
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -40,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
     // The code you place here will be executed every time your command is executed
 
     // Display a message box to the user
-    vscode.window.showInformationMessage('Hello World!');
+    vscode.window.showInformationMessage(JSON.stringify(findNotesDirectories(context)));
   });
 
   context.subscriptions.push(disposable);
